@@ -1,0 +1,1531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Story ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff5f0 50%, #f0f8ff 100%);
+            background-attachment: fixed;
+            color: #2c2c2c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 60px 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2 {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #d946ef, #f43f5e, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            margin-top: 80px;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #d946ef;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #d946ef, #f43f5e);
+            border-radius: 2px;
+        }
+
+        .intro {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            color: #555;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1.2s ease-in 0.3s both;
+        }
+
+        /* Moments Grid Section */
+        .moments-section {
+            margin: 60px 0;
+        }
+
+        .moments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .moment-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .moment-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .moment-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .moment-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .moment-card-content {
+            padding: 25px;
+        }
+
+        .moment-card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #d946ef;
+            margin-bottom: 12px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .moment-card-text {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .moment {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 30px;
+            align-items: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .moment:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .moment img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(217, 70, 239, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            object-fit: cover;
+        }
+
+        .moment img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(217, 70, 239, 0.25);
+        }
+
+        .text {
+            flex: 1;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+            min-width: 250px;
+        }
+
+        .footer {
+            text-align: center;
+            margin: 100px 0 60px;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #666;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(217, 70, 239, 0.1), rgba(244, 63, 94, 0.1));
+            border-radius: 20px;
+            border: 2px solid rgba(217, 70, 239, 0.2);
+        }
+
+        /* Alternating layout for variety */
+        .moment:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        @media (max-width: 700px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .moments-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .moment-card img {
+                height: 250px;
+            }
+
+            .moment, .moment:nth-child(even) {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .intro {
+                font-size: 1rem;
+            }
+        }
+
+        /* Slideshow Styles */
+        .slideshow-section {
+            margin-top: 100px;
+            margin-bottom: 60px;
+        }
+
+        .slideshow-section h2 {
+            margin-top: 0;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+            animation: slideAnimation 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideAnimation {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            display: block;
+            background: #f5f5f5;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 30px 20px 20px;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #d946ef;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .prev:hover, .next:hover {
+            background: #d946ef;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .dots-container {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 6px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .dot:hover {
+            background-color: #f43f5e;
+            transform: scale(1.2);
+        }
+
+        .dot.active {
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 700px) {
+            .slide img {
+                height: 350px;
+            }
+
+            .prev, .next {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .prev {
+                left: 10px;
+            }
+
+            .next {
+                right: 10px;
+            }
+
+            .slide-caption {
+                font-size: 0.95rem;
+                padding: 20px 15px 15px;
+            }
+        }
+
+        /* Timeline Styles */
+        .timeline-section {
+            margin: 100px 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #d946ef, #f43f5e, #fb923c);
+            border-radius: 2px;
+            box-shadow: 0 0 15px rgba(217, 70, 239, 0.3);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(217, 70, 239, 0.2);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: #d946ef;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c2c2c;
+            margin-bottom: 10px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .timeline-description {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 0 20px rgba(217, 70, 239, 0.4);
+            border: 4px solid #fff;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-icon {
+            transform: translate(-50%, -50%) rotate(360deg) scale(1.2);
+        }
+
+        /* Arrow connectors */
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -15px;
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent rgba(255, 255, 255, 0.7);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -15px;
+            border-width: 10px 15px 10px 0;
+            border-color: transparent rgba(255, 255, 255, 0.7) transparent transparent;
+        }
+
+        @media (max-width: 700px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                justify-content: flex-end;
+            }
+
+            .timeline-content {
+                width: calc(100% - 80px);
+            }
+
+            .timeline-icon {
+                left: 30px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::before {
+                left: -15px;
+                right: auto;
+                border-width: 10px 15px 10px 0;
+                border-color: transparent rgba(255, 255, 255, 0.7) transparent transparent;
+            }
+        }
+
+        /* Headphone Reminder Popup */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            max-width: 450px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .popup-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .popup-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.8rem;
+            color: #d946ef;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .popup-message {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .popup-button {
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            box-shadow: 0 5px 20px rgba(217, 70, 239, 0.3);
+        }
+
+        .popup-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(217, 70, 239, 0.4);
+        }
+
+        /* Countdown Timer */
+        .countdown-section {
+            padding: 25px;
+            margin: 10px 0 40px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+        }
+
+        .countdown-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.8rem;
+            color: #d946ef;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .countdown-subtitle {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .countdown-display {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .countdown-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .countdown-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .countdown-circle::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(135deg, #d946ef, #f43f5e, #fb923c);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .countdown-item:hover .countdown-circle {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(217, 70, 239, 0.3);
+        }
+
+        .countdown-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.85rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        .countdown-date {
+            font-size: 1.1rem;
+            color: #d946ef;
+            margin-top: 25px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .countdown-date::before,
+        .countdown-date::after {
+            content: '✦';
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 700px) {
+            .countdown-title {
+                font-size: 1.5rem;
+            }
+
+            .countdown-circle {
+                width: 70px;
+                height: 70px;
+            }
+
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+
+            .countdown-display {
+                gap: 15px;
+            }
+
+            .countdown-label {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Love Letter Section */
+        .love-letter-section {
+            margin: 80px 0 60px;
+            padding: 50px 40px;
+            background: linear-gradient(135deg, rgba(217, 70, 239, 0.03), rgba(244, 63, 94, 0.03));
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .love-letter-section::before {
+            content: '\201C';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 6rem;
+            color: rgba(217, 70, 239, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .letter-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .letter-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .letter-subtitle {
+            font-size: 1rem;
+            color: #888;
+            font-style: italic;
+        }
+
+        .letter-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .letter-greeting {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.4rem;
+            color: #d946ef;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .letter-text {
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #444;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .letter-signature {
+            text-align: right;
+            margin-top: 40px;
+        }
+
+        .signature-line {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.3rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .signature-name {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .letter-heart {
+            text-align: center;
+            font-size: 2rem;
+            margin-top: 30px;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        @media (max-width: 700px) {
+            .love-letter-section {
+                padding: 30px 25px;
+                margin: 50px 0 40px;
+            }
+
+            .love-letter-section::before {
+                font-size: 4rem;
+                left: 15px;
+            }
+
+            .letter-title {
+                font-size: 2rem;
+            }
+
+            .letter-text {
+                font-size: 1.05rem;
+                line-height: 1.8;
+                text-align: left;
+            }
+
+            .signature-name {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Music Control Button */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(217, 70, 239, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(217, 70, 239, 0.5);
+        }
+
+        .music-control.paused {
+            background: linear-gradient(135deg, #999, #666);
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffeef8, #fff5f0, #f0f8ff);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loading-content {
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+
+        .loading-heart {
+            font-size: 4rem;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin-bottom: 30px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.1); }
+            20%, 40% { transform: scale(1); }
+        }
+
+        .loading-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #d946ef, #f43f5e, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .loading-message {
+            font-size: 1.2rem;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            animation: bounce 1.4s ease-in-out infinite;
+        }
+
+        .dot:nth-child(1) { animation-delay: 0s; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .loading-heart {
+                font-size: 3rem;
+            }
+
+            .loading-title {
+                font-size: 2rem;
+            }
+
+            .loading-message {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+        }
+
+        /* Floating Hearts Animation */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float-up linear infinite;
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-duration: 15s; animation-delay: 0s; font-size: 18px; }
+        .heart:nth-child(2) { left: 20%; animation-duration: 18s; animation-delay: 2s; font-size: 24px; }
+        .heart:nth-child(3) { left: 30%; animation-duration: 20s; animation-delay: 4s; font-size: 16px; }
+        .heart:nth-child(4) { left: 40%; animation-duration: 17s; animation-delay: 1s; font-size: 22px; }
+        .heart:nth-child(5) { left: 50%; animation-duration: 19s; animation-delay: 3s; font-size: 20px; }
+        .heart:nth-child(6) { left: 60%; animation-duration: 16s; animation-delay: 5s; font-size: 18px; }
+        .heart:nth-child(7) { left: 70%; animation-duration: 21s; animation-delay: 2.5s; font-size: 25px; }
+        .heart:nth-child(8) { left: 80%; animation-duration: 18s; animation-delay: 4.5s; font-size: 17px; }
+        .heart:nth-child(9) { left: 90%; animation-duration: 19s; animation-delay: 1.5s; font-size: 21px; }
+        .heart:nth-child(10) { left: 15%; animation-duration: 22s; animation-delay: 3.5s; font-size: 19px; }
+
+        @keyframes float-up {
+            0% {
+                bottom: -10%;
+                opacity: 0;
+                transform: translateX(0) rotate(0deg);
+            }
+            10% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                bottom: 110%;
+                opacity: 0;
+                transform: translateX(100px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Loading Screen -->
+<div class="loading-screen" id="loadingScreen">
+    <div class="loading-content">
+        <div class="loading-heart">❤️</div>
+        <h1 class="loading-title">Hey Pondati...</h1>
+        <p class="loading-message">Preparing something special for you...</p>
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Hearts -->
+<div class="floating-hearts">
+    <div class="heart">💕</div>
+    <div class="heart">🌹</div>
+    <div class="heart">💖</div>
+    <div class="heart">✨</div>
+    <div class="heart">❤️</div>
+    <div class="heart">🌸</div>
+    <div class="heart">💗</div>
+    <div class="heart">🦋</div>
+    <div class="heart">💝</div>
+    <div class="heart">⭐</div>
+</div>
+
+<!-- Headphone Reminder Popup -->
+<div class="popup-overlay" id="headphonePopup">
+    <div class="popup-content">
+        <div class="popup-icon">🎧</div>
+        <h2 class="popup-title">Best Experienced with Headphones</h2>
+        <p class="popup-message">
+            For the best experience, we recommend using headphones to enjoy the background music.
+        </p>
+        <button class="popup-button" onclick="closePopup()">Got it!</button>
+    </div>
+</div>
+
+<!-- Background Music -->
+<audio id="backgroundMusic" loop autoplay>
+    <source src="sample_music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<!-- Music Control Button -->
+<button class="music-control" id="musicControl" onclick="toggleMusic()">
+    🎵
+</button>
+
+<div class="container">
+
+    <h1>Our Story ❤️</h1>
+
+    <p class="intro">
+        This page is a small collection of big moments.<br>
+        Some smiles, some memories, and a lot of love — just us.
+    </p>
+
+    <!-- Countdown Timer -->
+    <div class="countdown-section">
+        <h2 class="countdown-title">Our Forever Begins In...</h2>
+        <p class="countdown-subtitle">Counting down to the most beautiful day of our lives</p>
+
+        <div class="countdown-display">
+            <div class="countdown-item">
+                <div class="countdown-circle">
+                    <div class="countdown-number" id="days">0</div>
+                </div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-circle">
+                    <div class="countdown-number" id="hours">0</div>
+                </div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-circle">
+                    <div class="countdown-number" id="minutes">0</div>
+                </div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-circle">
+                    <div class="countdown-number" id="seconds">0</div>
+                </div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+
+        <div class="countdown-date">
+            May 20, 2026 at 06:15 AM 💍
+        </div>
+    </div>
+
+    <!-- First Photo -->
+    <h2>Our First Photo</h2>
+    <div class="moment">
+        <img src="first-photo.jpg" alt="Our first photo">
+        <div class="text">
+            This was the moment everything quietly began.
+            Just one photo, but it held a thousand emotions.
+            Looking at this now, I still feel the same warmth.
+        </div>
+    </div>
+
+    <!-- First Selfie -->
+    <h2>Our First Selfie</h2>
+    <div class="moment">
+        <img src="first-selfie.jpg" alt="Our first selfie">
+        <div class="text">
+            Our first selfie — a little awkward, a lot genuine.
+            Two smiles, one frame, and a future slowly taking shape.
+        </div>
+    </div>
+
+    <!-- Special Moment -->
+    <h2>A Moment I'll Never Forget</h2>
+    <div class="moment">
+        <img src="special-moment.jpg" alt="A special moment">
+        <div class="text">
+            This moment reminds me why I choose you every day.
+            Through calm days and chaotic ones, you feel like home.
+        </div>
+    </div>
+
+    <!-- Timeline Section -->
+    <div class="timeline-section">
+        <h2>Our Journey Together 🌟</h2>
+
+        <div class="timeline">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-icon">💫</div>
+                <div class="timeline-content">
+                    <div class="timeline-date">January 2024</div>
+                    <div class="timeline-title">The Day We Met</div>
+                    <div class="timeline-description">
+                        Two strangers became something more. A simple hello that changed everything.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+                <div class="timeline-icon">💝</div>
+                <div class="timeline-content">
+                    <div class="timeline-date">February 2024</div>
+                    <div class="timeline-title">Our First Date</div>
+                    <div class="timeline-description">
+                        Coffee turned into hours of conversation. I knew then that you were special.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+                <div class="timeline-icon">🎉</div>
+                <div class="timeline-content">
+                    <div class="timeline-date">April 2024</div>
+                    <div class="timeline-title">Making It Official</div>
+                    <div class="timeline-description">
+                        The moment we decided to walk this path together, hand in hand.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="timeline-item">
+                <div class="timeline-icon">✈️</div>
+                <div class="timeline-content">
+                    <div class="timeline-date">August 2024</div>
+                    <div class="timeline-title">Our First Adventure</div>
+                    <div class="timeline-description">
+                        Exploring new places, creating unforgettable memories side by side.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 5 -->
+            <div class="timeline-item">
+                <div class="timeline-icon">🏡</div>
+                <div class="timeline-content">
+                    <div class="timeline-date">December 2024</div>
+                    <div class="timeline-title">Building Our Home</div>
+                    <div class="timeline-description">
+                        Turning a house into a home, filled with laughter, love, and dreams.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Item 6 -->
+            <div class="timeline-item">
+                <div class="timeline-icon">💕</div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Today & Beyond</div>
+                    <div class="timeline-title">Forever Starts Now</div>
+                    <div class="timeline-description">
+                        Every day with you is a new chapter in our beautiful story. Here's to forever.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slideshow Section -->
+    <div class="slideshow-section">
+        <h2>Our Beautiful Moments 📸</h2>
+
+        <div class="slideshow-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="slide-number">1 / 5</div>
+                <img src="slide1.jpg" alt="Beautiful moment 1">
+                <div class="slide-caption">Every moment with you is a treasure</div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="slide-number">2 / 5</div>
+                <img src="slide2.jpg" alt="Beautiful moment 2">
+                <div class="slide-caption">Laughter that fills my heart</div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="slide-number">3 / 5</div>
+                <img src="slide3.jpg" alt="Beautiful moment 3">
+                <div class="slide-caption">Adventures we've shared together</div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide">
+                <div class="slide-number">4 / 5</div>
+                <img src="slide4.jpg" alt="Beautiful moment 4">
+                <div class="slide-caption">Simple moments, infinite memories</div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="slide">
+                <div class="slide-number">5 / 5</div>
+                <img src="slide5.jpg" alt="Beautiful moment 5">
+                <div class="slide-caption">Forever grateful for you</div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button class="prev" onclick="changeSlide(-1)">❮</button>
+            <button class="next" onclick="changeSlide(1)">❯</button>
+        </div>
+
+        <!-- Dots Navigation -->
+        <div class="dots-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+    </div>
+
+    <!-- Love Letter Section -->
+    <div class="love-letter-section">
+        <div class="letter-header">
+            <h2 class="letter-title">உனக்கான என் கடிதம்</h2>
+            <p class="letter-subtitle">என் இதயத்திலிருந்து உன் இதயத்திற்கு</p>
+        </div>
+
+        <div class="letter-content">
+            <div class="letter-greeting">என் அன்பே,</div>
+
+            <p class="letter-text">
+                உன்னோடு நான் கழிக்கும் ஒவ்வொரு கணமும் ஒரு அழகான கனவு போல இருக்கிறது, அதிலிருந்து நான் விழிக்க விரும்பவில்லை. என் வாழ்க்கையில் இருப்பதே தெரியாத வண்ணங்களை நீ கொண்டு வந்து சேர்த்திருக்கிறாய், என் இதயத்தின் ஒவ்வொரு மூலையையும் நிரப்பும் மகிழ்ச்சியை தந்திருக்கிறாய்.
+            </p>
+
+            <p class="letter-text">
+                நாம் முதல் முறையாக சந்தித்த நாளிலிருந்தே, உன்னில் ஏதோ சிறப்பு இருப்பதை உணர்ந்தேன். உன் சிரிப்பு, உன் சிரிப்பு ஒலி, நீ உலகத்தைப் பார்க்கும் விதம் — உன்னைப் பற்றிய எல்லாமே என்னை ஒரு சிறந்த மனிதனாக மாற வைக்கிறது. நீ என் சிறந்த தோழி, என் துணை, என் அனைத்தும்.
+            </p>
+
+            <p class="letter-text">
+                நம்முடைய திருமண நாளை எண்ணிக்கொண்டிருக்கும்போது, ஒவ்வொரு கணமும் எனக்கு மேலும் மேலும் உற்சாகமாக இருக்கிறது. என் வாழ்நாள் முழுவதும் உன்னை சிரிக்க வைப்பதற்கும், உன் கனவுகளை ஆதரிப்பதற்கும், நம் எதிர்காலத்தை ஒன்றாக உருவாக்குவதற்கும் காத்திருக்க முடியவில்லை. நீ என் என்றென்றும், நீ என்னை தேர்ந்தெடுத்ததற்கு நான் மிகவும் நன்றியுள்ளவனாக இருக்கிறேன்.
+            </p>
+
+            <p class="letter-text">
+                நீ இருப்பதற்கும், என்னை நிபந்தனையின்றி நேசிப்பதற்கும், இந்த அற்புதமான பயணத்திற்கு ஆம் என்று சொன்னதற்கும் நன்றி. ஒவ்வொரு சூரிய உதயம் மற்றும் மறையும் வேளையிலும், ஒவ்வொரு சவாலிலும் மற்றும் வெற்றியிலும், வரவிருக்கும் அனைத்து அழகான தருணங்களிலும் உன்னை நேசிப்பேன் என்று வாக்குறுதி அளிக்கிறேன்.
+            </p>
+
+            <div class="letter-signature">
+                <div class="signature-line">என்றென்றும் உன்னுடையவன்,</div>
+                <div class="signature-name">உன் காதல்</div>
+            </div>
+
+            <div class="letter-heart">❤️</div>
+        </div>
+    </div>
+
+    <div class="footer">
+        To many more photos, selfies, and moments — together 💕
+    </div>
+
+</div>
+
+<script>
+    let slideIndex = 1;
+    let slideInterval;
+
+    // Initialize slideshow
+    showSlide(slideIndex);
+    startAutoSlide();
+
+    function changeSlide(n) {
+        showSlide(slideIndex += n);
+        resetAutoSlide();
+    }
+
+    function currentSlide(n) {
+        showSlide(slideIndex = n);
+        resetAutoSlide();
+    }
+
+    function showSlide(n) {
+        let slides = document.getElementsByClassName("slide");
+        let dots = document.getElementsByClassName("dot");
+
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+
+        // Hide all slides
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+        }
+
+        // Remove active from all dots
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].classList.remove("active");
+        }
+
+        // Show current slide and activate dot
+        slides[slideIndex - 1].classList.add("active");
+        dots[slideIndex - 1].classList.add("active");
+    }
+
+    function startAutoSlide() {
+        slideInterval = setInterval(() => {
+            slideIndex++;
+            showSlide(slideIndex);
+        }, 4000); // Change slide every 4 seconds
+    }
+
+    function resetAutoSlide() {
+        clearInterval(slideInterval);
+        startAutoSlide();
+    }
+
+    // Pause auto-slide on hover
+    document.querySelector('.slideshow-container').addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
+    });
+
+    document.querySelector('.slideshow-container').addEventListener('mouseleave', () => {
+        startAutoSlide();
+    });
+
+    // Headphone Popup and Music Control
+    const popup = document.getElementById('headphonePopup');
+    const music = document.getElementById('backgroundMusic');
+    const musicControl = document.getElementById('musicControl');
+    let isPlaying = false;
+
+    // Try to autoplay immediately
+    function attemptAutoplay() {
+        music.play().then(() => {
+            isPlaying = true;
+            musicControl.classList.remove('paused');
+            musicControl.innerHTML = '🎵';
+        }).catch(error => {
+            console.log('Autoplay blocked, waiting for user interaction:', error);
+            // If autoplay is blocked, play on first user interaction
+            document.body.addEventListener('click', () => {
+                if (!isPlaying) {
+                    playMusic();
+                }
+            }, { once: true });
+        });
+    }
+
+    // Auto-play music on page load
+    window.addEventListener('load', () => {
+        const hasSeenPopup = localStorage.getItem('hasSeenHeadphonePopup');
+
+        // Try to play music after loading screen
+        setTimeout(() => {
+            attemptAutoplay();
+        }, 2600);
+
+        // Show popup only if they haven't seen it before
+        if (!hasSeenPopup) {
+            setTimeout(() => {
+                popup.classList.add('active');
+            }, 3000);
+        }
+    });
+
+    function closePopup() {
+        popup.classList.remove('active');
+        localStorage.setItem('hasSeenHeadphonePopup', 'true');
+        // Ensure music plays when popup is closed
+        if (!isPlaying) {
+            playMusic();
+        }
+    }
+
+    function playMusic() {
+        music.play().catch(error => {
+            console.log('Autoplay prevented:', error);
+        });
+        isPlaying = true;
+        musicControl.classList.remove('paused');
+        musicControl.innerHTML = '🎵';
+    }
+
+    function toggleMusic() {
+        if (isPlaying) {
+            music.pause();
+            isPlaying = false;
+            musicControl.classList.add('paused');
+            musicControl.innerHTML = '🔇';
+        } else {
+            playMusic();
+        }
+    }
+
+    // Countdown Timer
+    const weddingDate = new Date('May 20, 2026 06:15:00').getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+            document.getElementById('days').textContent = '0';
+            document.getElementById('hours').textContent = '0';
+            document.getElementById('minutes').textContent = '0';
+            document.getElementById('seconds').textContent = '0';
+            document.querySelector('.countdown-title').textContent = 'We Are Married! 💕';
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+    }
+
+    // Update countdown every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Hide loading screen when page is loaded
+    window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loadingScreen');
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+        }, 2500); // Keep loading screen for 2.5 seconds after page loads
+    });
+</script>
+
+</body>
+</html>
