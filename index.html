@@ -611,6 +611,104 @@
             box-shadow: 0 8px 25px rgba(217, 70, 239, 0.4);
         }
 
+        /* Ready Popup */
+        .ready-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 10001;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .ready-popup.active {
+            display: flex;
+        }
+
+        .ready-popup-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.95));
+            padding: 50px 60px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 25px 80px rgba(217, 70, 239, 0.4);
+            animation: slideUp 0.5s ease;
+            max-width: 500px;
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+
+        .ready-popup-content::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(135deg, #d946ef, #f43f5e, #fb923c);
+            border-radius: 30px;
+            z-index: -1;
+        }
+
+        .ready-popup-icon {
+            font-size: 5rem;
+            margin-bottom: 25px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .ready-popup-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .ready-popup-button {
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.2rem;
+            border-radius: 35px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 8px 30px rgba(217, 70, 239, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ready-popup-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 40px rgba(217, 70, 239, 0.6);
+        }
+
+        @media (max-width: 700px) {
+            .ready-popup-content {
+                padding: 40px 30px;
+                max-width: 90%;
+            }
+
+            .ready-popup-title {
+                font-size: 1.6rem;
+            }
+
+            .ready-popup-icon {
+                font-size: 4rem;
+            }
+        }
+
         /* Countdown Timer */
         .countdown-section {
             padding: 25px;
@@ -1083,15 +1181,12 @@
     <div class="heart">⭐</div>
 </div>
 
-<!-- Headphone Reminder Popup -->
-<div class="popup-overlay" id="headphonePopup">
-    <div class="popup-content">
-        <div class="popup-icon">🎧</div>
-        <h2 class="popup-title">Best Experienced with Headphones</h2>
-        <p class="popup-message">
-            For the best experience, we recommend using headphones to enjoy the background music.
-        </p>
-        <button class="popup-button" onclick="closePopup()">Got it!</button>
+<!-- Ready Popup -->
+<div class="ready-popup" id="readyPopup">
+    <div class="ready-popup-content">
+        <div class="ready-popup-icon">💖</div>
+        <h2 class="ready-popup-title">Are You Ready to Experience the Love?</h2>
+        <button class="ready-popup-button" onclick="startExperience()">Yes, I'm Ready!</button>
     </div>
 </div>
 
@@ -1418,91 +1513,31 @@
         startAutoSlide();
     });
 
-    // Headphone Popup and Music Control
-    const popup = document.getElementById('headphonePopup');
+    // Music Control
+    const readyPopup = document.getElementById('readyPopup');
     const music = document.getElementById('backgroundMusic');
     const musicControl = document.getElementById('musicControl');
     let isPlaying = false;
-    let userInteracted = false;
 
-    // Auto-start music on ANY user interaction
-    function setupAutoplayOnInteraction() {
-        const startMusic = () => {
-            if (!isPlaying && !userInteracted) {
-                userInteracted = true;
-                const musicState = localStorage.getItem('musicPlaying');
-                // Play if not explicitly paused by user
-                if (musicState !== 'false') {
-                    playMusic();
-                }
-            }
-        };
-
-        // Listen for multiple interaction types
-        ['click', 'touchstart', 'keydown', 'scroll'].forEach(eventType => {
-            document.addEventListener(eventType, startMusic, { once: true, passive: true });
-        });
-    }
-
-    // Try to autoplay immediately
-    function attemptAutoplay() {
-        music.play().then(() => {
-            isPlaying = true;
-            userInteracted = true;
-            musicControl.classList.remove('paused');
-            musicControl.innerHTML = '🎵';
-            localStorage.setItem('musicPlaying', 'true');
-        }).catch(error => {
-            console.log('Autoplay blocked, setting up interaction listeners:', error);
-            // Setup listeners for user interaction
-            setupAutoplayOnInteraction();
-        });
-    }
-
-    // Auto-play music on page load
+    // Show ready popup after loading screen
     window.addEventListener('load', () => {
-        const hasSeenPopup = localStorage.getItem('hasSeenHeadphonePopup');
-        const musicState = localStorage.getItem('musicPlaying');
-
-        // Only skip autoplay if user explicitly paused the music
-        const shouldAutoplay = musicState !== 'false';
-
-        // Try to play music after loading screen (unless user explicitly paused it)
-        if (shouldAutoplay) {
-            setTimeout(() => {
-                attemptAutoplay();
-            }, 2600);
-        } else {
-            // Update UI to show paused state
-            musicControl.classList.add('paused');
-            musicControl.innerHTML = '🔇';
-        }
-
-        // Show popup only if they haven't seen it before
-        if (!hasSeenPopup) {
-            setTimeout(() => {
-                popup.classList.add('active');
-            }, 3000);
-        }
+        setTimeout(() => {
+            readyPopup.classList.add('active');
+        }, 2700);
     });
 
-    function closePopup() {
-        popup.classList.remove('active');
-        localStorage.setItem('hasSeenHeadphonePopup', 'true');
-        // Ensure music plays when popup is closed
-        if (!isPlaying) {
-            playMusic();
-        }
-    }
+    // Start the experience when user clicks ready
+    function startExperience() {
+        readyPopup.classList.remove('active');
 
-    function playMusic() {
-        music.play().catch(error => {
-            console.log('Autoplay prevented:', error);
+        // Play music
+        music.play().then(() => {
+            isPlaying = true;
+            musicControl.classList.remove('paused');
+            musicControl.innerHTML = '🎵';
+        }).catch(error => {
+            console.log('Error playing music:', error);
         });
-        isPlaying = true;
-        musicControl.classList.remove('paused');
-        musicControl.innerHTML = '🎵';
-        localStorage.setItem('musicPlaying', 'true');
     }
 
     function toggleMusic() {
@@ -1511,9 +1546,12 @@
             isPlaying = false;
             musicControl.classList.add('paused');
             musicControl.innerHTML = '🔇';
-            localStorage.setItem('musicPlaying', 'false');
         } else {
-            playMusic();
+            music.play().then(() => {
+                isPlaying = true;
+                musicControl.classList.remove('paused');
+                musicControl.innerHTML = '🎵';
+            });
         }
     }
 
