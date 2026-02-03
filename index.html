@@ -1423,32 +1423,60 @@
     const music = document.getElementById('backgroundMusic');
     const musicControl = document.getElementById('musicControl');
     let isPlaying = false;
+    let userInteracted = false;
+
+    // Auto-start music on ANY user interaction
+    function setupAutoplayOnInteraction() {
+        const startMusic = () => {
+            if (!isPlaying && !userInteracted) {
+                userInteracted = true;
+                const musicState = localStorage.getItem('musicPlaying');
+                // Play if not explicitly paused by user
+                if (musicState !== 'false') {
+                    playMusic();
+                }
+            }
+        };
+
+        // Listen for multiple interaction types
+        ['click', 'touchstart', 'keydown', 'scroll'].forEach(eventType => {
+            document.addEventListener(eventType, startMusic, { once: true, passive: true });
+        });
+    }
 
     // Try to autoplay immediately
     function attemptAutoplay() {
         music.play().then(() => {
             isPlaying = true;
+            userInteracted = true;
             musicControl.classList.remove('paused');
             musicControl.innerHTML = '🎵';
+            localStorage.setItem('musicPlaying', 'true');
         }).catch(error => {
-            console.log('Autoplay blocked, waiting for user interaction:', error);
-            // If autoplay is blocked, play on first user interaction
-            document.body.addEventListener('click', () => {
-                if (!isPlaying) {
-                    playMusic();
-                }
-            }, { once: true });
+            console.log('Autoplay blocked, setting up interaction listeners:', error);
+            // Setup listeners for user interaction
+            setupAutoplayOnInteraction();
         });
     }
 
     // Auto-play music on page load
     window.addEventListener('load', () => {
         const hasSeenPopup = localStorage.getItem('hasSeenHeadphonePopup');
+        const musicState = localStorage.getItem('musicPlaying');
 
-        // Try to play music after loading screen
-        setTimeout(() => {
-            attemptAutoplay();
-        }, 2600);
+        // Only skip autoplay if user explicitly paused the music
+        const shouldAutoplay = musicState !== 'false';
+
+        // Try to play music after loading screen (unless user explicitly paused it)
+        if (shouldAutoplay) {
+            setTimeout(() => {
+                attemptAutoplay();
+            }, 2600);
+        } else {
+            // Update UI to show paused state
+            musicControl.classList.add('paused');
+            musicControl.innerHTML = '🔇';
+        }
 
         // Show popup only if they haven't seen it before
         if (!hasSeenPopup) {
@@ -1474,6 +1502,7 @@
         isPlaying = true;
         musicControl.classList.remove('paused');
         musicControl.innerHTML = '🎵';
+        localStorage.setItem('musicPlaying', 'true');
     }
 
     function toggleMusic() {
@@ -1482,6 +1511,7 @@
             isPlaying = false;
             musicControl.classList.add('paused');
             musicControl.innerHTML = '🔇';
+            localStorage.setItem('musicPlaying', 'false');
         } else {
             playMusic();
         }
