@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Our Story ❤️</title>
+    <title>Our Story  | H❤️ S</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23d946ef"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+        }
+
+        button, a, input, .moment-card, .slide, .dot {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="%23f43f5e"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), pointer;
         }
 
         /* Password Protection Overlay */
@@ -149,7 +154,7 @@
         body {
             margin: 0;
             font-family: 'Inter', 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #ffeef8 0%, #fff5f0 50%, #f0f8ff 100%);
+            background: linear-gradient(135deg, #ffe0f5 0%, #ffebdd 50%, #e0f0ff 100%);
             background-attachment: fixed;
             color: #2c2c2c;
             line-height: 1.6;
@@ -160,6 +165,14 @@
             margin: auto;
             padding: 60px 20px;
             animation: fadeIn 1s ease-in;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .container.show {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         @keyframes fadeIn {
@@ -704,6 +717,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .popup-icon {
             font-size: 4rem;
             margin-bottom: 20px;
@@ -744,7 +762,7 @@
 
         /* Ready Popup */
         .ready-popup {
-            display: none;
+            display: flex;
             position: fixed;
             top: 0;
             left: 0;
@@ -755,24 +773,34 @@
             z-index: 10001;
             justify-content: center;
             align-items: center;
-            animation: fadeIn 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
         .ready-popup.active {
-            display: flex;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
 
         .ready-popup-content {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 240, 245, 0.95));
+            background: #ffffff;
             padding: 50px 60px;
             border-radius: 30px;
             text-align: center;
-            box-shadow: 0 25px 80px rgba(217, 70, 239, 0.4);
-            animation: slideUp 0.5s ease;
+            box-shadow: 0 25px 80px rgba(217, 70, 239, 0.6), 0 0 100px rgba(255, 255, 255, 0.3);
             max-width: 500px;
-            border: 3px solid transparent;
+            border: 4px solid #d946ef;
             background-clip: padding-box;
             position: relative;
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+        }
+
+        .ready-popup.active .ready-popup-content {
+            opacity: 1;
+            transform: scale(1) translateY(0);
         }
 
         .ready-popup-content::before {
@@ -796,10 +824,7 @@
         .ready-popup-title {
             font-family: 'Open Sans', sans-serif;
             font-size: 2rem;
-            background: linear-gradient(135deg, #d946ef, #f43f5e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: white;
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.3;
@@ -846,8 +871,10 @@
             margin: 10px 0 40px;
             text-align: center;
             position: relative;
-            border: 1px solid rgba(0, 0, 0, 0.15);
-            border-radius: 15px;
+            background: #ffffff;
+            border: 3px solid #d946ef;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         }
 
         .countdown-title {
@@ -977,10 +1004,11 @@
         .love-letter-section {
             margin: 80px 0 60px;
             padding: 50px 40px;
-            background: linear-gradient(135deg, rgba(217, 70, 239, 0.03), rgba(244, 63, 94, 0.03));
-            border-radius: 20px;
+            background: #ffffff;
+            border-radius: 8px;
             position: relative;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 3px solid #d946ef;
         }
 
         .love-letter-section::before {
@@ -1112,6 +1140,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .music-control.show {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .music-control:hover {
@@ -1136,6 +1171,8 @@
             justify-content: center;
             align-items: center;
             z-index: 10000;
+            opacity: 1;
+            visibility: visible;
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
@@ -1238,6 +1275,12 @@
             pointer-events: none;
             overflow: hidden;
             z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .floating-hearts.show {
+            opacity: 1;
         }
 
         .heart {
@@ -1279,24 +1322,179 @@
                 transform: translateX(100px) rotate(360deg);
             }
         }
+
+        /* Sparkle Rain Animation */
+        .sparkle-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 5000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .sparkle-rain.show {
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+        }
+
+        .sparkle {
+            position: absolute;
+            top: -10px;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e, #ffa500);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 165, 0, 0.6);
+            animation: sparkle-fall linear forwards;
+        }
+
+        @keyframes sparkle-fall {
+            0% {
+                transform: translateY(0) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) scale(0.8) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #d946ef;
+            top: -10px;
+            z-index: 9999;
+            animation: confetti-fall linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Container Visibility Control */
+        .container {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .container.show {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+            visibility: visible !important;
+            display: block !important;
+        }
+
+        /* Scroll Fade-in Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            margin: 80px 0;
+            padding: 50px;
+            background: linear-gradient(135deg, rgba(255, 238, 248, 0.8), rgba(255, 245, 240, 0.8));
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .quiz-question {
+            margin: 30px 0;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .quiz-question h3 {
+            color: #d946ef;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 15px 20px;
+            background: #f9f9f9;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="%23f43f5e"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), pointer;
+            transition: all 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .quiz-option:hover {
+            background: #ffeef8;
+            border-color: #d946ef;
+            transform: translateX(10px);
+        }
+
+        .quiz-option.correct {
+            background: linear-gradient(135deg, #d4fc79, #96e6a1);
+            border-color: #4caf50;
+            animation: bounce 0.5s ease;
+        }
+
+        .quiz-option.wrong {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            border-color: #f43f5e;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .quiz-result {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .quiz-result.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
     </style>
 </head>
 
 <body>
-
-<!-- Password Protection Overlay -->
-<div id="passwordOverlay">
-    <div class="password-container">
-        <h2>🔒 Private Access</h2>
-        <p>Please enter the password to continue</p>
-        <p style="font-size: 0.85rem; color: #999; margin-top: -15px; margin-bottom: 25px;">💡 Hint: Your DOB in the format of (DDMMYYYY)</p>
-        <div class="password-input-group">
-            <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off">
-        </div>
-        <button id="submitPassword">Unlock</button>
-        <div class="error-message" id="errorMessage">Incorrect password. Please try again.</div>
-    </div>
-</div>
 
 <!-- Main Content Wrapper -->
 <div id="mainContent">
@@ -1305,7 +1503,7 @@
 <div class="loading-screen" id="loadingScreen">
     <div class="loading-content">
         <div class="loading-heart">❤️</div>
-        <h1 class="loading-title">Hey Pondati...</h1>
+        <h1 class="loading-title">Hey Pondatti!</h1>
         <p class="loading-message">Preparing something special for you...</p>
         <div class="loading-dots">
             <div class="dot"></div>
@@ -1328,6 +1526,9 @@
     <div class="heart">💝</div>
     <div class="heart">⭐</div>
 </div>
+
+<!-- Sparkle Rain -->
+<div class="sparkle-rain" id="sparkleRain"></div>
 
 <!-- Ready Popup -->
 <div class="ready-popup" id="readyPopup">
@@ -1360,7 +1561,7 @@
     </p>
 
     <!-- Countdown Timer -->
-    <div class="countdown-section">
+    <div class="countdown-section fade-in">
         <h2 class="countdown-title">Our Forever Begins In...</h2>
         <p class="countdown-subtitle">Counting down to the most beautiful day of our lives</p>
 
@@ -1397,8 +1598,8 @@
     </div>
 
     <!-- First Photo -->
-    <h2>Our First Photo - Nov 23</h2>
-    <div class="moment">
+    <h2 class="fade-in">Our First Photo - Nov 23</h2>
+    <div class="moment fade-in">
         <img src="media/first-photo.jpg" alt="Our first photo">
         <div class="text">
             This was the moment everything quietly began.
@@ -1408,8 +1609,8 @@
     </div>
 
     <!-- First Selfie -->
-    <h2>Our First Selfie - Nov 30</h2>
-    <div class="moment">
+    <h2 class="fade-in">Our First Selfie - Nov 30</h2>
+    <div class="moment fade-in">
         <img src="media/first-selfie.jpg" alt="Our first selfie">
         <div class="text">
             Our first selfie, a little awkward, a lot genuine.
@@ -1417,10 +1618,10 @@
         </div>
     </div>
 
-    <!-- Special Moment -->
-    <h2>Our First Date - Dec 6</h2>
-    <div class="moment">
-        <img src="media/special-moment.jpg" alt="A special moment">
+    <!-- First Date -->
+    <h2 class="fade-in">Our First Date - Dec 6</h2>
+    <div class="moment fade-in">
+        <img src="media/special-moment.jpg" alt="Our first date">
         <div class="text">
             This moment reminds me why I choose you every day.
             Through calm days and chaotic ones, you feel like home.
@@ -1428,7 +1629,7 @@
     </div>
 
     <!-- Timeline Section -->
-    <div class="timeline-section">
+    <div class="timeline-section fade-in">
         <h2>Our Journey Together 🌟</h2>
 
         <div class="timeline">
@@ -1439,7 +1640,7 @@
                     <div class="timeline-date">October 28, 2025</div>
                     <div class="timeline-title">Beginning of forever</div>
                     <div class="timeline-description">
-                        Two strangers became something more. A simple request & hello that changed everything.
+                        Two strangers became something more. A simple request & hello that changed everything. The day we first said hello online. Who knew that simple message would change everything?
                     </div>
                 </div>
             </div>
@@ -1475,7 +1676,7 @@
                     <div class="timeline-date">Nov 27, 2025</div>
                     <div class="timeline-title">Your B'day spent together</div>
                     <div class="timeline-description">
-                        A special birthday celebration, filled with joy, surprises, and unforgettable moments. The marriage hall was also booked on this day.
+                        A special birthday celebration, filled with joy, surprises, and unforgettable moments. Your birthday celebration together - the joy in your eyes was priceless! Also the day we booked our future - the marriage hall was booked on this day.
                     </div>
                 </div>
             </div>
@@ -1499,7 +1700,7 @@
                     <div class="timeline-date">Dec 6, 2025</div>
                     <div class="timeline-title">Our First Temple date</div>
                     <div class="timeline-description">
-                        Our first date at the temple, a day filled with spirituality and togetherness.
+                        Our first date at the temple, a day filled with spirituality and togetherness. Our first temple visit together, seeking blessings for our journey ahead. Peace and togetherness.
                     </div>
                 </div>
             </div>
@@ -1536,7 +1737,7 @@
                     <div class="timeline-date">Jan 26, 2026</div>
                     <div class="timeline-title">Bird Watch & Beach</div>
                     <div class="timeline-description">
-                        A beautiful day spent bird watching and relaxing at the beach, enjoying nature's wonders together.
+                        A beautiful day spent bird watching and relaxing at the beach, enjoying nature's wonders together. Watching birds and waves together, feeling the ocean breeze, holding hands - simple perfection.
                     </div>
                 </div>
             </div>
@@ -1548,7 +1749,7 @@
                     <div class="timeline-date">Feb 6, 2026</div>
                     <div class="timeline-title">Uruthi Varthai</div>
                     <div class="timeline-description">
-                        Uruthi Varthai Ceremony - A beautiful tradition where we exchanged our vows and promises for a lifetime of love and togetherness.
+                        Uruthi Varthai Ceremony - A beautiful tradition where we exchanged our vows and promises for a lifetime of love and togetherness. The ceremony where we promised to be each other's forever. Most beautiful commitment.
                     </div>
                 </div>
             </div>
@@ -1560,14 +1761,14 @@
                     <div class="timeline-date">Today & Beyond</div>
                     <div class="timeline-title">Forever Starts Now</div>
                     <div class="timeline-description">
-                        Every day with you is a new chapter in our beautiful story. Here's to forever.
+                        Every day with you is a new chapter in our beautiful story. Here's to forever. Every moment from here is a new memory waiting to be made. Here's to our endless love story.
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Slideshow Section -->
-    <div class="slideshow-section">
+    <div class="slideshow-section fade-in">
         <h2>Our Beautiful Moments 📸</h2>
 
         <div class="slideshow-container">
@@ -1816,8 +2017,67 @@
         </div>
     </div>
 
+    <!-- Quiz Section -->
+    <div class="quiz-section fade-in">
+        <h2>How Well Do You Know Us? 💕</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">Test your knowledge about our love story!</p>
+
+        <div class="quiz-question">
+            <h3>1. When did we first meet in person?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="checkAnswer(this, false)">October 28, 2025</div>
+                <div class="quiz-option" onclick="checkAnswer(this, true)">November 23, 2025</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false)">November 6, 2025</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false)">December 6, 2025</div>
+            </div>
+        </div>
+
+        <div class="quiz-question">
+            <h3>2. Where was our first date?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="checkAnswer(this, false)">Beach</div>
+                <div class="quiz-option" onclick="checkAnswer(this, true)">Temple</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false)">Restaurant</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false)">Park</div>
+            </div>
+        </div>
+
+        <div class="quiz-question">
+            <h3>3. When is our wedding day?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="checkAnswer(this, false)">May 15, 2026</div>
+                <div class="quiz-option" onclick="checkAnswer(this, true)">May 20, 2026</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false)">May 25, 2026</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false)">June 1, 2026</div>
+            </div>
+        </div>
+
+        <div class="quiz-question">
+            <h3>4. What special event happened on November 27, 2025?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="checkAnswer(this, false)">First Travel Together</div>
+                <div class="quiz-option" onclick="checkAnswer(this, true)">Birthday Celebration & Hall Booking</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false)">Engagement</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false)">First Photo</div>
+            </div>
+        </div>
+
+        <div class="quiz-question">
+            <h3>5. What was the first food we had together?</h3>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="checkAnswer(this, false)">Burger</div>
+                <div class="quiz-option" onclick="checkAnswer(this, true)">Pizza</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false)">Biryani</div>
+                <div class="quiz-option" onclick="checkAnswer(this, false)">Dosa</div>
+            </div>
+        </div>
+
+        <div class="quiz-result" id="quizResult"></div>
+    </div>
+
     <div class="footer">
-        To many more photos, selfies, and moments together 💕
+        Hema ❤️ Surender<br>
+        <span style="font-size: 0.85em; margin-top: 10px; display: block;">To many more photos, selfies, and moments together 💕</span>
     </div>
 
 </div>
@@ -1890,16 +2150,18 @@
     const musicControl = document.getElementById('musicControl');
     let isPlaying = false;
 
-    // Show ready popup after loading screen
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            readyPopup.classList.add('active');
-        }, 2700);
-    });
-
     // Start the experience when user clicks ready
     function startExperience() {
         readyPopup.classList.remove('active');
+
+        // Show all the hidden content
+        document.querySelector('.container').classList.add('show');
+        document.querySelector('.floating-hearts').classList.add('show');
+        document.getElementById('musicControl').classList.add('show');
+        document.getElementById('sparkleRain').classList.add('show');
+
+        // Create sparkles
+        createSparkles();
 
         // Play music
         music.play().then(() => {
@@ -1911,23 +2173,76 @@
         });
     }
 
-    function toggleMusic() {
-        if (isPlaying) {
-            music.pause();
-            isPlaying = false;
-            musicControl.classList.add('paused');
-            musicControl.innerHTML = '🔇';
-        } else {
-            music.play().then(() => {
-                isPlaying = true;
-                musicControl.classList.remove('paused');
-                musicControl.innerHTML = '🎵';
-            });
+    // Create sparkle rain effect
+    function createSparkles() {
+        const sparkleContainer = document.getElementById('sparkleRain');
+        const sparkleCount = 100;
+
+        if (!sparkleContainer) {
+            console.log('Sparkle container not found');
+            return;
         }
+
+        for (let i = 0; i < sparkleCount; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.width = (Math.random() * 3 + 2) + 'px';
+            sparkle.style.height = sparkle.style.width;
+            sparkle.style.animationDuration = (Math.random() * 4 + 3) + 's';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            sparkleContainer.appendChild(sparkle);
+        }
+
+        console.log('Created', sparkleCount, 'gold sparkles');
+
+        // Stop sparkles after 15 seconds
+        setTimeout(() => {
+            sparkleContainer.classList.remove('show');
+            console.log('Sparkles stopped');
+            // Remove sparkles after fade out
+            setTimeout(() => {
+                sparkleContainer.innerHTML = '';
+            }, 500);
+        }, 15000);
     }
 
     // Countdown Timer
     const weddingDate = new Date('May 20, 2026 06:15:00').getTime();
+
+    // Dynamic cursor color change on mouse move
+    document.addEventListener('mousemove', (e) => {
+        // Calculate hue based on mouse position
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        const hue = Math.floor((x * 360 + y * 180) % 360);
+
+        // Convert HSL to hex for the cursor
+        const saturation = 75;
+        const lightness = 55;
+        const color = hslToHex(hue, saturation, lightness);
+
+        // Update cursor with new color
+        const cursorStyle = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="${color}"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto`;
+
+        // Apply to all elements with custom cursor
+        document.querySelectorAll('*').forEach(el => {
+            if (window.getComputedStyle(el).cursor.includes('data:image')) {
+                el.style.cursor = cursorStyle;
+            }
+        });
+    });
+
+    // Helper function to convert HSL to Hex
+    function hslToHex(h, s, l) {
+        s /= 100;
+        l /= 100;
+        const k = n => (n + h / 30) % 12;
+        const a = s * Math.min(l, 1 - l);
+        const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+        const toHex = x => Math.round(x * 255).toString(16).padStart(2, '0');
+        return `%23${toHex(f(0))}${toHex(f(8))}${toHex(f(4))}`;
+    }
 
     function updateCountdown() {
         const now = new Date().getTime();
@@ -1957,58 +2272,119 @@
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
-    // Hide loading screen when page is loaded
+    // Auto-start experience on page load
+    const mainContent = document.getElementById('mainContent');
+    const loadingScreen = document.getElementById('loadingScreen');
+
+    // Show loading screen and start the experience automatically
     window.addEventListener('load', () => {
-        const loadingScreen = document.getElementById('loadingScreen');
+        // Scroll to top
+        window.scrollTo(0, 0);
+
+        // Show loading screen for 2.5 seconds, then show ready popup
         setTimeout(() => {
             loadingScreen.classList.add('hidden');
-        }, 2500); // Keep loading screen for 2.5 seconds after page loads
-    });
 
-    // Password Protection
-    const correctPassword = '27111999';
-    const passwordOverlay = document.getElementById('passwordOverlay');
-    const passwordInput = document.getElementById('passwordInput');
-    const submitButton = document.getElementById('submitPassword');
-    const errorMessage = document.getElementById('errorMessage');
-    const mainContent = document.getElementById('mainContent');
-
-    function checkPassword() {
-        const enteredPassword = passwordInput.value;
-
-        if (enteredPassword === correctPassword) {
-            // Correct password - hide overlay and show content
-            passwordOverlay.classList.add('hidden');
-            mainContent.classList.add('visible');
-            sessionStorage.setItem('authenticated', 'true');
-        } else {
-            // Wrong password - show error
-            errorMessage.classList.add('show');
-            passwordInput.classList.add('error');
-            passwordInput.value = '';
-
+            // Show ready popup after loading screen with proper transition
             setTimeout(() => {
-                errorMessage.classList.remove('show');
-                passwordInput.classList.remove('error');
-            }, 2000);
-        }
-    }
-
-    // Check if already authenticated in this session
-    if (sessionStorage.getItem('authenticated') === 'true') {
-        passwordOverlay.classList.add('hidden');
-        mainContent.classList.add('visible');
-    }
-
-    // Submit button click
-    submitButton.addEventListener('click', checkPassword);
-
-    // Enter key press
-    passwordInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            checkPassword();
-        }
+                readyPopup.classList.add('active');
+            }, 300);
+        }, 2500);
     });
+
+    // Scroll Animation Observer
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    fadeElements.forEach(element => {
+        fadeObserver.observe(element);
+    });
+
+    // Dynamic cursor color change on mouse move
+    let hue = 0;
+    document.addEventListener('mousemove', (e) => {
+        // Calculate hue based on mouse position
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        hue = Math.floor((x * 360 + y * 180) % 360);
+
+        // Convert HSL to hex for the cursor
+        const saturation = 70;
+        const lightness = 55;
+        const color = hslToHex(hue, saturation, lightness);
+
+        // Update cursor with new color
+        document.body.style.cursor = `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="${encodeURIComponent(color)}"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto`;
+    });
+
+    // Helper function to convert HSL to Hex
+    function hslToHex(h, s, l) {
+        s /= 100;
+        l /= 100;
+        const k = n => (n + h / 30) % 12;
+        const a = s * Math.min(l, 1 - l);
+        const f = n => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+        const toHex = x => Math.round(x * 255).toString(16).padStart(2, '0');
+        return `%23${toHex(f(0))}${toHex(f(8))}${toHex(f(4))}`;
+    }
+
+    // Quiz functionality
+    let quizScore = 0;
+    let questionsAnswered = 0;
+    const totalQuestions = 5;
+
+    function checkAnswer(element, isCorrect) {
+        // Prevent re-clicking
+        const options = element.parentElement.querySelectorAll('.quiz-option');
+        options.forEach(opt => {
+            opt.style.pointerEvents = 'none';
+        });
+
+        if (isCorrect) {
+            element.classList.add('correct');
+            quizScore++;
+        } else {
+            element.classList.add('wrong');
+            // Show the correct answer
+            options.forEach(opt => {
+                if (opt.onclick.toString().includes('true')) {
+                    setTimeout(() => opt.classList.add('correct'), 500);
+                }
+            });
+        }
+
+        questionsAnswered++;
+
+        if (questionsAnswered === totalQuestions) {
+            setTimeout(() => {
+                const resultDiv = document.getElementById('quizResult');
+                const percentage = (quizScore / totalQuestions) * 100;
+                let message = '';
+
+                if (percentage === 100) {
+                    message = `🎉 Perfect Score! ${quizScore}/${totalQuestions} - You know our story by heart! ❤️`;
+                } else if (percentage >= 75) {
+                    message = `😊 Great job! ${quizScore}/${totalQuestions} - You know us pretty well!`;
+                } else if (percentage >= 50) {
+                    message = `💕 Not bad! ${quizScore}/${totalQuestions} - Keep reading our story!`;
+                } else {
+                    message = `💝 ${quizScore}/${totalQuestions} - Time to read our story more carefully!`;
+                }
+
+                resultDiv.textContent = message;
+                resultDiv.classList.add('show');
+            }, 1000);
+        }
+    }
 </script>
 
 </div><!-- End of mainContent -->
