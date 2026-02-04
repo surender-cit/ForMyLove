@@ -20,6 +20,58 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="%23f43f5e"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), pointer;
         }
 
+        /* Coming Soon Overlay - Add class "coming-soon" to body to activate */
+        .coming-soon-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffe0f5 0%, #ffebdd 50%, #e0f0ff 100%);
+            z-index: 99999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body.coming-soon .coming-soon-overlay {
+            display: flex;
+        }
+
+        .coming-soon-content {
+            text-align: center;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 4px solid #d946ef;
+            max-width: 500px;
+            animation: slideUp 0.6s ease;
+        }
+
+        .coming-soon-icon {
+            font-size: 5rem;
+            margin-bottom: 30px;
+            animation: heartbeat 2s ease-in-out infinite;
+        }
+
+        .coming-soon-title {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .coming-soon-message {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
         /* Password Protection Overlay */
         #passwordOverlay {
             position: fixed;
@@ -1494,7 +1546,19 @@
     </style>
 </head>
 
-<body>
+<body class="coming-soon">
+
+<!-- Coming Soon Overlay - Remove class "coming-soon" from body tag below to show the site -->
+<div class="coming-soon-overlay">
+    <div class="coming-soon-content">
+        <div class="coming-soon-icon">💝</div>
+        <h1 class="coming-soon-title">Coming Soon</h1>
+        <p class="coming-soon-message">
+            Something special is being prepared...<br>
+            Stay tuned! ✨
+        </p>
+    </div>
+</div>
 
 <!-- Main Content Wrapper -->
 <div id="mainContent">
