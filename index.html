@@ -137,12 +137,13 @@
         }
 
         #mainContent {
-            opacity: 0;
-            transition: opacity 0.8s ease;
+            visibility: hidden;
+            transition: visibility 0s 0.5s;
         }
 
         #mainContent.visible {
-            opacity: 1;
+            visibility: visible;
+            transition: visibility 0s;
         }
 
         body {
@@ -1288,6 +1289,7 @@
     <div class="password-container">
         <h2>🔒 Private Access</h2>
         <p>Please enter the password to continue</p>
+        <p style="font-size: 0.85rem; color: #999; margin-top: -15px; margin-bottom: 25px;">💡 Hint: Your DOB in the format of (DDMMYYYY)</p>
         <div class="password-input-group">
             <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off">
         </div>
@@ -1353,7 +1355,7 @@
 
     <p class="intro">
         This page is a small collection of big moments.<br>
-        Some smiles, some memories, and a lot of love — just us. Where two hearts became one,
+        Some smiles, some memories, and a lot of love, just us. Where two hearts became one,
         and every moment became the beginning of forever.<br>
     </p>
 
@@ -1410,7 +1412,7 @@
     <div class="moment">
         <img src="media/first-selfie.jpg" alt="Our first selfie">
         <div class="text">
-            Our first selfie — a little awkward, a lot genuine.
+            Our first selfie, a little awkward, a lot genuine.
             Two smiles, one frame, and a future slowly taking shape.
         </div>
     </div>
@@ -1815,7 +1817,7 @@
     </div>
 
     <div class="footer">
-        To many more photos, selfies, and moments — together 💕
+        To many more photos, selfies, and moments together 💕
     </div>
 
 </div>
@@ -1964,7 +1966,7 @@
     });
 
     // Password Protection
-    const correctPassword = '638116';
+    const correctPassword = '27111999';
     const passwordOverlay = document.getElementById('passwordOverlay');
     const passwordInput = document.getElementById('passwordInput');
     const submitButton = document.getElementById('submitPassword');
