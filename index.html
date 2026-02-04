@@ -15,6 +15,136 @@
             box-sizing: border-box;
         }
 
+        /* Password Protection Overlay */
+        #passwordOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffeef8 0%, #fff5f0 50%, #f0f8ff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #passwordOverlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .password-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .password-container h2 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .password-container p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .password-input-group {
+            margin-bottom: 20px;
+        }
+
+        #passwordInput {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: 'Open Sans', sans-serif;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        #passwordInput:focus {
+            border-color: #d946ef;
+            box-shadow: 0 0 0 3px rgba(217, 70, 239, 0.1);
+        }
+
+        #passwordInput.error {
+            border-color: #f43f5e;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        #submitPassword {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #d946ef, #f43f5e);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        #submitPassword:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(217, 70, 239, 0.3);
+        }
+
+        #submitPassword:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: #f43f5e;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .error-message.show {
+            opacity: 1;
+        }
+
+        #mainContent {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        #mainContent.visible {
+            opacity: 1;
+        }
+
         body {
             margin: 0;
             font-family: 'Inter', 'Segoe UI', sans-serif;
@@ -1153,6 +1283,22 @@
 
 <body>
 
+<!-- Password Protection Overlay -->
+<div id="passwordOverlay">
+    <div class="password-container">
+        <h2>🔒 Private Access</h2>
+        <p>Please enter the password to continue</p>
+        <div class="password-input-group">
+            <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off">
+        </div>
+        <button id="submitPassword">Unlock</button>
+        <div class="error-message" id="errorMessage">Incorrect password. Please try again.</div>
+    </div>
+</div>
+
+<!-- Main Content Wrapper -->
+<div id="mainContent">
+
 <!-- Loading Screen -->
 <div class="loading-screen" id="loadingScreen">
     <div class="loading-content">
@@ -1816,7 +1962,54 @@
             loadingScreen.classList.add('hidden');
         }, 2500); // Keep loading screen for 2.5 seconds after page loads
     });
+
+    // Password Protection
+    const correctPassword = '638116';
+    const passwordOverlay = document.getElementById('passwordOverlay');
+    const passwordInput = document.getElementById('passwordInput');
+    const submitButton = document.getElementById('submitPassword');
+    const errorMessage = document.getElementById('errorMessage');
+    const mainContent = document.getElementById('mainContent');
+
+    function checkPassword() {
+        const enteredPassword = passwordInput.value;
+
+        if (enteredPassword === correctPassword) {
+            // Correct password - hide overlay and show content
+            passwordOverlay.classList.add('hidden');
+            mainContent.classList.add('visible');
+            sessionStorage.setItem('authenticated', 'true');
+        } else {
+            // Wrong password - show error
+            errorMessage.classList.add('show');
+            passwordInput.classList.add('error');
+            passwordInput.value = '';
+
+            setTimeout(() => {
+                errorMessage.classList.remove('show');
+                passwordInput.classList.remove('error');
+            }, 2000);
+        }
+    }
+
+    // Check if already authenticated in this session
+    if (sessionStorage.getItem('authenticated') === 'true') {
+        passwordOverlay.classList.add('hidden');
+        mainContent.classList.add('visible');
+    }
+
+    // Submit button click
+    submitButton.addEventListener('click', checkPassword);
+
+    // Enter key press
+    passwordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            checkPassword();
+        }
+    });
 </script>
+
+</div><!-- End of mainContent -->
 
 </body>
 </html>
