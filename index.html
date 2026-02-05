@@ -194,7 +194,7 @@
         }
 
         #mainContent {
-            visibility: hidden;
+            visibility: visible;
             transition: visibility 0s 0.5s;
         }
 
@@ -1178,36 +1178,49 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #d946ef, #f43f5e);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.5rem;
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid #d946ef;
+            border-radius: 15px;
+            color: #d946ef;
+            font-size: 1.8rem;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(217, 70, 239, 0.4);
-            z-index: 1000;
-            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15), 0 0 0 0 rgba(217, 70, 239, 0.4);
+            z-index: 10002;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             pointer-events: none;
+            backdrop-filter: blur(10px);
         }
 
         .music-control.show {
             opacity: 1;
             pointer-events: auto;
+            animation: fadeInBounce 0.6s ease;
         }
 
         .music-control:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(217, 70, 239, 0.5);
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(217, 70, 239, 0.2);
+            border-color: #f43f5e;
+            color: #f43f5e;
         }
 
-        .music-control.paused {
-            background: linear-gradient(135deg, #999, #666);
+        .music-control.stopped {
+            background: rgba(100, 100, 100, 0.15);
+            border-color: #999;
+            color: #999;
+        }
+
+        @keyframes fadeInBounce {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
         /* Loading Screen */
@@ -2230,11 +2243,30 @@
         // Play music
         music.play().then(() => {
             isPlaying = true;
-            musicControl.classList.remove('paused');
+            musicControl.classList.remove('stopped');
             musicControl.innerHTML = '🎵';
         }).catch(error => {
             console.log('Error playing music:', error);
         });
+    }
+
+    // Toggle music play/stop
+    function toggleMusic() {
+        if (isPlaying) {
+            music.pause();
+            music.currentTime = 0;
+            isPlaying = false;
+            musicControl.classList.add('stopped');
+            musicControl.innerHTML = '🔇';
+        } else {
+            music.play().then(() => {
+                isPlaying = true;
+                musicControl.classList.remove('stopped');
+                musicControl.innerHTML = '🎵';
+            }).catch(error => {
+                console.log('Error playing music:', error);
+            });
+        }
     }
 
     // Create sparkle rain effect
@@ -2348,6 +2380,9 @@
         // Show loading screen for 2.5 seconds, then show ready popup
         setTimeout(() => {
             loadingScreen.classList.add('hidden');
+
+            // Show music control button after loading screen is done
+            document.getElementById('musicControl').classList.add('show');
 
             // Show ready popup after loading screen with proper transition
             setTimeout(() => {
